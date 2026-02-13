@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Details</title>
+    
+    <link rel="stylesheet" href="static/style.css">
+
+</head>
+<body>
+    <div class="container">
+    
+
+
+
+<h2>Student Career Assessment</h2>
+
+<form method="post" action="/result">
+
+    <label>Stream:</label>
+    <select name="stream" id="stream" onchange="updateInterest()" required>
+        <option value="">-- Select Stream --</option>
+        <option value="pcm">Science Maths</option>
+        <option value="pcb">Science Bio</option>
+        <option value="pcmb">Science Maths + Bio</option>
+        <option value="commerce">Commerce</option>
+        <option value="arts">Arts</option>
+    </select>
+
+    <br><br>
+
+    <label>Percentile:</label>
+    <select name="percentile" required>
+        <option value="90">90–100%</option>
+        <option value="80">80–89%</option>
+        <option value="70">70–79%</option>
+        <option value="60">60–69%</option>
+    </select>
+
+    <br><br>
+
+    <label>Interest:</label>
+    <select name="interest" id="interest" required>
+        <option value="">-- Select Interest --</option>
+    </select>
+
+    <br><br>
+
+    <button type="submit">Get Career Recommendation</button>
+
+</form>
+
+<script>
+function updateInterest() {
+    const stream = document.getElementById("stream").value;
+    const interest = document.getElementById("interest");
+
+    interest.innerHTML = "";
+
+    let options = [];
+
+    if (stream === "pcm") {
+        options = ["computer", "research", "practical", "discipline", "creative"];
+    } else if (stream === "pcb") {
+        options = ["medical", "research", "helping"];
+    } else if (stream === "pcmb") {
+        options = ["computer", "medical", "research"];
+    } else if (stream === "commerce") {
+        options = ["finance", "business", "management", "creative"];
+    } else if (stream === "arts") {
+        options = ["creative", "helping", "teaching", "leadership"];
+    }
+
+    options.forEach(opt => {
+        const o = document.createElement("option");
+        o.value = opt;
+        o.text = opt.charAt(0).toUpperCase() + opt.slice(1);
+        interest.appendChild(o);
+    });
+}
+</script>
+</div>
+
+</body>
+</html>
